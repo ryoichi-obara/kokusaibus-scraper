@@ -1,0 +1,26 @@
+{
+  "extends": "airbnb-base",
+  "rules": {
+    "max-len": [
+      2,
+      {
+        "code": 150,
+        "tabWidth": 4,
+        "ignoreUrls": true
+      }
+    ],
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "log"
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "import/core-modules": [
+      "aws-sdk"
+    ]
+  }
+}

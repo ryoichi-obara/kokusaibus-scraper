@@ -1,0 +1,35 @@
+{
+  "name": "kokusaibus-scraper",
+  "description": "Web scraping for http://www.kokusaibus.com/blsys/loca",
+  "version": "1.0.0",
+  "author": "Ryoichi Obara <npmjs0102@gmail.com> (http://ryoichi0102.hatenablog.com/)",
+  "dependencies": {
+    "cheerio-httpcli": "^0.7.2"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.235.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "dotenv": "^5.0.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.11.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-install": "^1.1.0",
+    "gulp-zip": "^4.1.0"
+  },
+  "keywords": [
+    "scraping",
+    "timetable",
+    "traffic",
+    "webscraping"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm i && gulp clean && babel src -d build && gulp install-dependancies",
+    "make": "npm run build && gulp build-zip",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
