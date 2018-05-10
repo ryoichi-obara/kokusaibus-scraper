@@ -23,7 +23,7 @@ const logAndRes = (code, message) => {
 
 exports.handler = async (event) => {
   console.log(event);
-  console.log('＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝');
+  console.log('----------------------------------------');
 
   const dynamoResult = await dynamoGet(TABLE_NAME, { location: event.path });
   // const dynamoResult = {};
@@ -35,7 +35,7 @@ exports.handler = async (event) => {
     return logAndRes(400, 'No url.');
   }
 
-  // console.log('■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■');
+  // console.log('----------------------------------------');
   // console.log(dynamoResult.url);
 
   const fetchResult = await client.fetch(dynamoResult.url);
