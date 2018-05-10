@@ -6,7 +6,7 @@ const { TABLE_NAME } = process.env;
 const Dynamo = new AWS.DynamoDB.DocumentClient({ region: REIGION });
 
 const dynamoGet = async (TableName, Key) => new Promise((resolve, reject) => {
-  Dynamo.get({ TableName, Key }, (err, data) => err ? reject(err) : resolve(data.Item));
+  Dynamo.get({ TableName, Key }, (err, data) => (err ? reject(err) : resolve(data.Item)));
 });
 
 const logAndRes = (code, message) => {
@@ -21,7 +21,7 @@ const logAndRes = (code, message) => {
   };
 };
 
-exports.handler = async event => {
+exports.handler = async (event) => {
   console.log(event);
   console.log('＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝');
 
@@ -48,9 +48,9 @@ exports.handler = async event => {
   const fetchedTable = [];
   const trTags = fetchResult.$('table.R_Table tr');
 
-  trTags.each(trTag => {
+  trTags.each((trTag) => {
     const trArray = [];
-    trTags[trTag].children.forEach(td => {
+    trTags[trTag].children.forEach((td) => {
       // Process TH, TD, TEXT, others.
       if (td.name === 'th') {
         trArray.push(td.children[0].data.trim());
@@ -59,9 +59,9 @@ exports.handler = async event => {
       } else if (td.type === 'text') {
         // console.log(td.text);
       } else {
-          // console.log(`? ${td.type}`);
-          // console.log(td);
-        }
+        // console.log(`? ${td.type}`);
+        // console.log(td);
+      }
     });
     fetchedTable.push(trArray);
   });
@@ -76,10 +76,14 @@ exports.handler = async event => {
 
   return {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
       originUrl: dynamoResult.url,
       originUpdated: fetchedDatetime,
       table: fetchedTable,
-    })
+    }),
   };
 };
