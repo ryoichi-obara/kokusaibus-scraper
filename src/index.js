@@ -42,6 +42,8 @@ exports.handler = async (event) => {
   // const doc = new DOM().parseFromString(fetchResult.body);
   // const trTags = xpath.select('//table[@class="R_Table"]//tr', doc);
 
+  // ex. "東川口駅南口０１"
+  const fetchedBusStopName = fetchResult.$('p.fontBK_mB').text().replace('停留所名：　', '');
   // ex. "【12:06】現在"
   const fetchedDatetime = fetchResult.$('span.fontBK_m').text();
 
@@ -83,6 +85,7 @@ exports.handler = async (event) => {
     body: JSON.stringify({
       originUrl: dynamoResult.url,
       originUpdated: fetchedDatetime,
+      busStopName: fetchedBusStopName,
       table: fetchedTable,
     }),
   };
