@@ -20,7 +20,8 @@
   },
   "settings": {
     "import/core-modules": [
-      "aws-sdk"
+      "aws-sdk",
+      "dotenv"
     ]
   }
 }

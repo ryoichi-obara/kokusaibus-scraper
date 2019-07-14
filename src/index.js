@@ -1,9 +1,9 @@
 const AWS = require('aws-sdk');
 const client = require('cheerio-httpcli');
 
-const { REIGION } = process.env;
+const { REGION } = process.env;
 const { TABLE_NAME } = process.env;
-const Dynamo = new AWS.DynamoDB.DocumentClient({ region: REIGION });
+const Dynamo = new AWS.DynamoDB.DocumentClient({ region: REGION });
 
 const dynamoGet = async (TableName, Key) => new Promise((resolve, reject) => {
   Dynamo.get({ TableName, Key }, (err, data) => (err ? reject(err) : resolve(data.Item)));
@@ -24,6 +24,8 @@ const logAndRes = (code, message) => {
 exports.handler = async (event) => {
   console.log(event);
   console.log('----------------------------------------');
+  console.log(event.path);
+
 
   const dynamoResult = await dynamoGet(TABLE_NAME, { location: event.path });
   // const dynamoResult = {};
