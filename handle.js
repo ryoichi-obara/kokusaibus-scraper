@@ -3,7 +3,7 @@ require('dotenv').config();
 // Parmeters for lambda function. (This is default values of lambda function test.)
 const event = {
   resource: '/{proxy+}',
-  path: '/minamiurawa/05',
+  path: '/minamiurawa-nishi/05',
   httpMethod: 'GET',
   headers:
   {
@@ -54,7 +54,7 @@ const event = {
   },
   queryStringParameters: null,
   multiValueQueryStringParameters: null,
-  pathParameters: { proxy: 'minamiurawa/05' },
+  pathParameters: { proxy: 'minamiurawa-nishi/05' },
   stageVariables: null,
   requestContext:
   {
@@ -63,7 +63,7 @@ const event = {
     httpMethod: 'GET',
     extendedRequestId: 'Ux55QGEDtjMFiMA=',
     requestTime: '08/Feb/2019:12:04:11 +0000',
-    path: '/prod/minamiurawa/05',
+    path: '/prod/minamiurawa-nishi/05',
     accountId: '048895066302',
     protocol: 'HTTP/1.1',
     stage: 'prod',
