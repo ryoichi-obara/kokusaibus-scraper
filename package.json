@@ -14,10 +14,11 @@
     "eslint": "^6.0.1",
     "eslint-config-airbnb-base": "^13.2.0",
     "eslint-plugin-import": "^2.18.0",
-    "gulp": "^4.0.2",
-    "gulp-clean": "^0.4.0",
-    "gulp-install": "^1.1.0",
-    "gulp-zip": "^5.0.0"
+    "glob": "^7.1.4",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.8",
+    "webpack-node-externals": "^1.7.2"
   },
   "keywords": [
     "scraping",
@@ -26,10 +27,8 @@
     "webscraping"
   ],
   "license": "MIT",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "build": "npm i && gulp clean && babel src -d build && gulp install-dependancies",
-    "make": "npm run build && gulp build-zip",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

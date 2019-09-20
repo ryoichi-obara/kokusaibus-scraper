@@ -1,0 +1,54 @@
+
+service: kokusaibus-scraper
+
+custom:
+  defaultProfile: default
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+frameworkVersion: ">=1.4.0"
+
+provider:
+  name: aws
+  profile: ${opt:profile, self:custom.defaultProfile}
+  runtime: nodejs10.x
+  stackName: 'kokusaibus-scraper'
+  #apiName: 'kokusaibus-scraper'
+  stage: prod
+  region: ap-northeast-1
+  memorySize: 128
+  timeout: 10
+  role: ${file(./serverless-env.yml):role}
+  deploymentBucket:
+    name: ${file(./serverless-env.yml):deploy-bucket}
+
+plugins:
+  - serverless-webpack
+
+package:
+  excludeDevDependencies: true
+#  include:
+#    - include-me.js
+#    - include-me-dir/**
+#  exclude:
+#    - exclude-me.js
+#    - exclude-me-dir/**
+
+functions:
+  scrape:
+    name: '${self:service}'
+    handler: src/index.handler
+    environment:
+      TZ: Asia/Toyko
+      REGION: ap-northeast-1
+      TABLE_NAME: ${file(./serverless-env.yml):table}
+    # package:
+    #   include: # Specify the directories and files which should be included in the deployment package for this specific function.
+    #     # - src/**
+    #     # - handler.js
+    #  - ./src/index.js
+    events:
+      - schedule: cron(* * * * ? *) # every minutes
+      - cloudwatchLog:
+          logGroup: '/aws/lambda/${self:service}'
