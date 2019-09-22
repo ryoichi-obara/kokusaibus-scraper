@@ -38,11 +38,11 @@ package:
 functions:
   scrape:
     name: '${self:service}'
-    handler: src/index.handler
+    handler: src/scraper.handler
     environment:
       TZ: Asia/Toyko
       REGION: ap-northeast-1
-      TABLE_NAME: ${file(./serverless-env.yml):table}
+      S3_BUCKET_NAME: ${file(./serverless-env.yml):scraper-bucket}
     # package:
     #   include: # Specify the directories and files which should be included in the deployment package for this specific function.
     #     # - src/**
@@ -50,5 +50,5 @@ functions:
     #  - ./src/index.js
     events:
       - schedule: cron(* * * * ? *) # every minutes
-      - cloudwatchLog:
-          logGroup: '/aws/lambda/${self:service}'
+      # - cloudwatchLog:
+      #     logGroup: '/aws/lambda/${self:service}'
