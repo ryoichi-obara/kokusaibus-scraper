@@ -52,3 +52,15 @@ functions:
       - schedule: cron(* * * * ? *) # every minutes
       # - cloudwatchLog:
       #     logGroup: '/aws/lambda/${self:service}'
+  query:
+    name: '${self:service}-query'
+    handler: src/query.handler
+    environment:
+      # TZ: Asia/Toyko
+      S3_REGION: ap-northeast-1
+      S3_BUCKET_NAME: ${file(./serverless-env.yml):query-bucket}
+    events:
+      - http:
+          path: '{proxy+}'
+          method: GET
+          cors: true
