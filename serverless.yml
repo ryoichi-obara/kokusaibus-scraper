@@ -68,3 +68,14 @@ functions:
           path: '{proxy+}'
           method: GET
           cors: true
+
+resources:
+  Resources:
+    ScrapeLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        RetentionInDays: 30
+    QueryLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        RetentionInDays: 30
