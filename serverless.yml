@@ -46,6 +46,7 @@ functions:
     environment:
       TZ: Asia/Toyko
       REGION: ap-northeast-1
+      DYNAMO_TABLE_NAME: ${file(./serverless-env.yml):dynamo-table-name}
       S3_BUCKET_NAME: ${file(./serverless-env.yml):scraper-bucket}
     # package:
     #   include: # Specify the directories and files which should be included in the deployment package for this specific function.
