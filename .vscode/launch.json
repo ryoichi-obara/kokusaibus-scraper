@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "query.js",
+      "program": "${workspaceFolder}/test-query.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "scraper.js",
       "program": "${workspaceFolder}/test-scraper.js"
     }
