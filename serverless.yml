@@ -5,7 +5,11 @@ custom:
   defaultProfile: default
   webpack:
     webpackConfig: ./webpack.config.js
-    includeModules: true
+    # includeModules: true # Do not exclude any packages.
+    includeModules:
+      forceExclude:
+        - aws-sdk
+        - cheerio-httpcli # contains Lambda layer.
 
 frameworkVersion: ">=1.4.0"
 
@@ -53,6 +57,8 @@ functions:
     #     # - src/**
     #     # - handler.js
     #  - ./src/index.js
+    layers:
+      - {Ref: LambdalayersLambdaLayer} # ${layerName}LambdaLayer
     events:
       - schedule: cron(* * * * ? *) # every minutes
       # - cloudwatchLog:
@@ -69,6 +75,10 @@ functions:
           path: '{proxy+}'
           method: GET
           cors: true
+
+layers:
+  lambdalayers:
+    path: lambda-layers
 
 resources:
   Resources:

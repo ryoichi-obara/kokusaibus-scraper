@@ -1,0 +1,16 @@
+{
+  "name": "nodejs",
+  "description": "Lambda layer for cheerio-httpcli.",
+  "version": "1.0.0",
+  "author": "Ryoichi Obara <npmjs0102@gmail.com> (http://ryoichi0102.hatenablog.com/)",
+  "dependencies": {
+    "cheerio-httpcli": "^0.7.4"
+  },
+  "devDependencies": {},
+  "license": "MIT",
+  "main": "./node_modules/cheerio-httpcli/index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
