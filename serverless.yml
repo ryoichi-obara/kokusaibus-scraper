@@ -59,6 +59,7 @@ functions:
     #  - ./src/index.js
     layers:
       - {Ref: LambdalayersLambdaLayer} # ${layerName}LambdaLayer
+    memorySize: 192
     events:
       - schedule: cron(* * * * ? *) # every minutes
       # - cloudwatchLog:
