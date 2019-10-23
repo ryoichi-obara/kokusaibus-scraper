@@ -60,6 +60,15 @@ functions:
     layers:
       - {Ref: LambdalayersLambdaLayer} # ${layerName}LambdaLayer
     memorySize: 192
+  cache:
+    name: '${self:service}-cache'
+    handler: src/cache.handler
+    environment:
+      # TZ: Asia/Toyko
+      SQS_URL: ${file(./serverless-env.yml):sqs-url}
+      S3_REGION: ap-northeast-1
+      S3_BUCKET_NAME: ${file(./serverless-env.yml):query-bucket}
+      SCRAPER_BASE_URL: ${file(./serverless-env.yml):scraper-base-url}
     events:
       - schedule: cron(* * * * ? *) # every minutes
       # - cloudwatchLog:
@@ -84,6 +93,10 @@ layers:
 resources:
   Resources:
     ScrapeLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        RetentionInDays: 30
+    CacheLogGroup:
       Type: AWS::Logs::LogGroup
       Properties:
         RetentionInDays: 30
