@@ -69,6 +69,14 @@ functions:
       S3_REGION: ap-northeast-1
       S3_BUCKET_NAME: ${file(./serverless-env.yml):query-bucket}
       SCRAPER_BASE_URL: ${file(./serverless-env.yml):scraper-base-url}
+  hook:
+    name: '${self:service}-hook'
+    handler: src/hook.handler
+    environment:
+      # TZ: Asia/Toyko
+      REGION: ap-northeast-1
+      DYNAMO_TABLE_NAME: ${file(./serverless-env.yml):dynamo-table-name}
+      SQS_URL: ${file(./serverless-env.yml):sqs-url}
     events:
       - schedule: cron(* * * * ? *) # every minutes
       # - cloudwatchLog:
@@ -97,6 +105,10 @@ resources:
       Properties:
         RetentionInDays: 30
     CacheLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        RetentionInDays: 30
+    HookLogGroup:
       Type: AWS::Logs::LogGroup
       Properties:
         RetentionInDays: 30
