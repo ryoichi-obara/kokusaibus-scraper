@@ -7,6 +7,12 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "cache.js",
+      "program": "${workspaceFolder}/test-cache.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "query.js",
       "program": "${workspaceFolder}/test-query.js"
     },
