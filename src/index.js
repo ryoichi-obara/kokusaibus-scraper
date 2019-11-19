@@ -23,9 +23,7 @@ const logAndRes = (code, message) => {
 
 exports.handler = async (event) => {
   console.log(event);
-  console.log('----------------------------------------');
   console.log(event.path);
-
 
   const dynamoResult = await dynamoGet(TABLE_NAME, { location: event.path });
   // const dynamoResult = {};
@@ -41,6 +39,7 @@ exports.handler = async (event) => {
   // console.log(dynamoResult.url);
 
   const fetchResult = await client.fetch(dynamoResult.url);
+  console.log(fetchResult);
   // const doc = new DOM().parseFromString(fetchResult.body);
   // const trTags = xpath.select('//table[@class="R_Table"]//tr', doc);
 
