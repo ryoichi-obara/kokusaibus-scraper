@@ -44,6 +44,16 @@ package:
 #    - exclude-me-dir/**
 
 functions:
+  index:
+    name: '${self:service}-index'
+    handler: src/index.handler
+    environment:
+      TZ: Asia/Toyko
+      REGION: ap-northeast-1
+      TABLE_NAME: ${file(./serverless-env.yml):dynamo-table-name}
+    layers:
+      - {Ref: LambdalayersLambdaLayer} # ${layerName}LambdaLayer
+    memorySize: 192
   scrape:
     name: '${self:service}'
     handler: src/scraper.handler
@@ -100,6 +110,10 @@ layers:
 
 resources:
   Resources:
+    IndexLogGroup:
+      Type: AWS::Logs::LogGroup
+      Properties:
+        RetentionInDays: 30
     ScrapeLogGroup:
       Type: AWS::Logs::LogGroup
       Properties:
