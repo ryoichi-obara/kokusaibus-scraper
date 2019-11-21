@@ -2,4 +2,4 @@
 @REM call npm i
 @REM cd ..\..
 
-sls deploy
+sls deploy --profile ryoichi0102
