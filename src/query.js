@@ -12,7 +12,9 @@ const S3 = new AWS.S3({ region });
 const main = async (event) => {
   // const place = 'buzo3/02';
   // const event.path = '/buzo3/02';
-  const place = event.path.substr(1);
+  // const place = event.path.substr(1);
+  // const event.pathParameters.proxy = 'buzo3/02';
+  const place = event.pathParameters.proxy;
   console.log(place);
 
   const latestData = await S3.getObject({

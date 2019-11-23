@@ -23,9 +23,10 @@ const logAndRes = (code, message) => {
 
 exports.handler = async (event) => {
   console.log(event);
-  console.log(event.path);
+  console.log(event.pathParameters.proxy);
+  const location = `/${event.pathParameters.proxy}`;
 
-  const dynamoResult = await dynamoGet(TABLE_NAME, { location: event.path });
+  const dynamoResult = await dynamoGet(TABLE_NAME, { location });
   // const dynamoResult = {};
   // dynamoResult.url = 'http://www.kokusaibus.com/blsys/loca?VID=ldt&EID=nt&DSMK=1581&DK=1hd_1sq_q9-1hd_1sq_nqu31o-1hd_1sq_nqu31v-1hd_1sq_1f8';
   if (!dynamoResult) {
