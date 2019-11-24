@@ -54,6 +54,11 @@ functions:
     layers:
       - {Ref: LambdalayersLambdaLayer} # ${layerName}LambdaLayer
     memorySize: 192
+    events:
+      - http:
+          path: '/scraper/{proxy+}'
+          method: GET
+          cors: true
   scrape:
     name: '${self:service}'
     handler: src/scraper.handler
@@ -100,7 +105,7 @@ functions:
       S3_BUCKET_NAME: ${file(./serverless-env.yml):query-bucket}
     events:
       - http:
-          path: '{proxy+}'
+          path: '/query/{proxy+}'
           method: GET
           cors: true
 
