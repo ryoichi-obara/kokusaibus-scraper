@@ -39,7 +39,11 @@ exports.handler = async (event) => {
   // console.log('----------------------------------------');
   // console.log(dynamoResult.url);
 
-  const fetchResult = await client.fetch(dynamoResult.url);
+  const fetchResult = await client.fetch(dynamoResult.url)
+    .catch((e) => {
+      console.log(e);
+      throw e;
+    });
   console.log(fetchResult);
   // const doc = new DOM().parseFromString(fetchResult.body);
   // const trTags = xpath.select('//table[@class="R_Table"]//tr', doc);
