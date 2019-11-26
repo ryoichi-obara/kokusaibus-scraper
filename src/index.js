@@ -42,8 +42,22 @@ exports.handler = async (event) => {
   const fetchResult = await client.fetch(dynamoResult.url)
     .catch((e) => {
       console.log(e);
+      if (e.code === 'EHOSTUNREACH' || e.errno === 'EHOSTUNREACH') {
+        return {
+          statusCode: 204, // No content
+        };
+      }
+      if (e.code === 'ECONNREFUSED' || e.errno === 'ECONNREFUSED') {
+        return {
+          statusCode: 204, // No content
+        };
+      }
       throw e;
     });
+  if (fetchResult.statusCode) {
+    return fetchResult;
+  }
+
   console.log(fetchResult);
   // const doc = new DOM().parseFromString(fetchResult.body);
   // const trTags = xpath.select('//table[@class="R_Table"]//tr', doc);
