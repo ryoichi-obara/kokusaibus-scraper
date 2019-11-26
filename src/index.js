@@ -52,6 +52,11 @@ exports.handler = async (event) => {
           statusCode: 204, // No content
         };
       }
+      if (e.statusCode === 503) {
+        return {
+          statusCode: 204, // No content
+        };
+      }
       throw e;
     });
   if (fetchResult.statusCode) {
