@@ -43,16 +43,19 @@ exports.handler = async (event) => {
     .catch((e) => {
       console.log(e);
       if (e.code === 'EHOSTUNREACH' || e.errno === 'EHOSTUNREACH') {
+        console.log('Aborting EHOSTUNREACH.');
         return {
           statusCode: 204, // No content
         };
       }
       if (e.code === 'ECONNREFUSED' || e.errno === 'ECONNREFUSED') {
+        console.log('Aborting ECONNREFUSED.');
         return {
           statusCode: 204, // No content
         };
       }
       if (e.statusCode === 503) {
+        console.log('Aborting 503.');
         return {
           statusCode: 204, // No content
         };
