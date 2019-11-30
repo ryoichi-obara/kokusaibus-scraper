@@ -30,7 +30,7 @@ exports.handler = async (event) => {
     .filter(i => i.url);
 
   // Send SQS message.
-  const result = await Promise.all(
+  await Promise.all(
     items.map(item => sendMessage({
       url: item.url,
       location: item.location.replace(/^\//, ''),
