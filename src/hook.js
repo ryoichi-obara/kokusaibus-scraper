@@ -25,6 +25,12 @@ const sendMessage = async messageBody => SQS.sendMessage({
 exports.handler = async (event) => {
   console.log(JSON.stringify(event));
 
+  const hour = new Date().getHours(); // UTC 24 hour
+  // Avoid hook from 3:00(+9) JST to 4:00 JST(+9)
+  if (hour === (27 - 9) || hour === (28 - 9)) {
+    return;
+  }
+
   // Dynamo scan.
   const items = (await dynamoScan(TABLE_NAME))
     .filter(i => i.url);
