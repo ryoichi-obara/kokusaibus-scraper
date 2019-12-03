@@ -28,15 +28,12 @@ exports.handler = async (event) => {
   const hour = new Date().getHours(); // UTC 24 hour
   // Avoid hook from 3:00(+9) JST to 4:00 JST(+9)
   if (hour === (27 - 9) || hour === (28 - 9)) {
-    console.log('Avoided.');
     return;
   }
 
   // Dynamo scan.
   const items = (await dynamoScan(TABLE_NAME))
     .filter(i => i.url);
-
-  console.log(`Scanned ${items.length} items.`);
 
   // Send SQS message.
   await Promise.all(
