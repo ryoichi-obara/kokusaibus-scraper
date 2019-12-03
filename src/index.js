@@ -10,7 +10,6 @@ const dynamoGet = async (TableName, Key) => new Promise((resolve, reject) => {
 });
 
 const logAndRes = (code, message) => {
-  console.log(message);
   return {
     statusCode: code,
     headers: {
@@ -23,7 +22,6 @@ const logAndRes = (code, message) => {
 
 exports.handler = async (event) => {
   // console.log(event);
-  // console.log(event.pathParameters.proxy);
   const location = `/${event.pathParameters.proxy}`;
 
   const dynamoResult = await dynamoGet(TABLE_NAME, { location });

@@ -15,7 +15,6 @@ const main = async (event) => {
   // const place = event.path.substr(1);
   // const event.pathParameters.proxy = 'buzo3/02';
   const place = event.pathParameters.proxy;
-  console.log(place);
 
   const latestData = await S3.getObject({
     Bucket,
