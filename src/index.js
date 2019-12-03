@@ -64,7 +64,7 @@ exports.handler = async (event) => {
     return fetchResult;
   }
 
-  console.log(fetchResult);
+  // console.log(fetchResult);
   // const doc = new DOM().parseFromString(fetchResult.body);
   // const trTags = xpath.select('//table[@class="R_Table"]//tr', doc);
 
