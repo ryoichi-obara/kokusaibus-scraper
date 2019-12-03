@@ -67,7 +67,7 @@ const fetchData = async (url) => {
 // ----------------------------------------
 
 exports.handler = async (event) => {
-  console.log(JSON.stringify(event));
+  // console.log(JSON.stringify(event));
 
   const items = (await dynamoScan(TABLE_NAME))
     .filter(i => i.url);

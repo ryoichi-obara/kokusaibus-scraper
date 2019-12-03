@@ -22,8 +22,8 @@ const logAndRes = (code, message) => {
 };
 
 exports.handler = async (event) => {
-  console.log(event);
-  console.log(event.pathParameters.proxy);
+  // console.log(event);
+  // console.log(event.pathParameters.proxy);
   const location = `/${event.pathParameters.proxy}`;
 
   const dynamoResult = await dynamoGet(TABLE_NAME, { location });

@@ -10,7 +10,7 @@ const S3 = new AWS.S3({ region });
 // ----------------------------------------
 
 exports.handler = async (event) => {
-  console.log(JSON.stringify(event));
+  // console.log(JSON.stringify(event));
 
   await Promise.all(
     event.Records.map(async (record) => {

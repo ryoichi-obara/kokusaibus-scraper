@@ -33,7 +33,7 @@ const main = async (event) => {
 };
 
 exports.handler = async (event) => {
-  console.log(JSON.stringify(event));
+  // console.log(JSON.stringify(event));
 
   return main(event)
     .catch((e) => {
