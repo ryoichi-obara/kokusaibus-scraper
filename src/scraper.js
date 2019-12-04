@@ -76,7 +76,7 @@ exports.handler = async (event) => {
   const fetchedDataArray = await Promise.all(
     items.map(async (item) => {
       const fetchedData = await fetchData(item.url);
-      fetchedData.location = item.location.replace(/^\//, '');
+      fetchedData.location = item.location.replace(/^\//, ''); // TODO Remove replace.
       return fetchedData;
     }),
   );

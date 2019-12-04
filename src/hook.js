@@ -39,7 +39,7 @@ exports.handler = async (event) => {
   await Promise.all(
     items.map(item => sendMessage({
       url: item.url,
-      location: item.location.replace(/^\//, ''),
+      location: item.location.replace(/^\//, ''), // TODO Remove replace.
     })),
   );
 

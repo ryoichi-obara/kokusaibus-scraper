@@ -22,7 +22,7 @@ const logAndRes = (code, message) => {
 
 exports.handler = async (event) => {
   // console.log(event);
-  const location = `/${event.pathParameters.proxy}`;
+  const location = event.pathParameters.proxy;
 
   const dynamoResult = await dynamoGet(TABLE_NAME, { location });
   // const dynamoResult = {};
