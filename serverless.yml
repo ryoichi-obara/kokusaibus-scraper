@@ -48,7 +48,7 @@ functions:
     name: '${self:service}-index'
     handler: src/index.handler
     environment:
-      TZ: Asia/Toyko
+      TZ: Asia/Tokyo
       REGION: ap-northeast-1
       TABLE_NAME: ${file(./serverless-env.yml):dynamo-table-name}
     layers:
@@ -63,7 +63,7 @@ functions:
     name: '${self:service}'
     handler: src/scraper.handler
     environment:
-      TZ: Asia/Toyko
+      TZ: Asia/Tokyo
       REGION: ap-northeast-1
       DYNAMO_TABLE_NAME: ${file(./serverless-env.yml):dynamo-table-name}
       S3_BUCKET_NAME: ${file(./serverless-env.yml):scraper-bucket}
@@ -79,7 +79,7 @@ functions:
     name: '${self:service}-cache'
     handler: src/cache.handler
     environment:
-      # TZ: Asia/Toyko
+      # TZ: Asia/Tokyo
       SQS_URL: ${file(./serverless-env.yml):sqs-url}
       S3_REGION: ap-northeast-1
       S3_BUCKET_NAME: ${file(./serverless-env.yml):query-bucket}
@@ -88,7 +88,7 @@ functions:
     name: '${self:service}-hook'
     handler: src/hook.handler
     environment:
-      # TZ: Asia/Toyko
+      # TZ: Asia/Tokyo
       REGION: ap-northeast-1
       DYNAMO_TABLE_NAME: ${file(./serverless-env.yml):dynamo-table-name}
       SQS_URL: ${file(./serverless-env.yml):sqs-url}
@@ -100,7 +100,7 @@ functions:
     name: '${self:service}-query'
     handler: src/query.handler
     environment:
-      # TZ: Asia/Toyko
+      # TZ: Asia/Tokyo
       S3_REGION: ap-northeast-1
       S3_BUCKET_NAME: ${file(./serverless-env.yml):query-bucket}
     events:
