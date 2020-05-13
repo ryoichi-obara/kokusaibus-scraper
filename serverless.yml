@@ -26,6 +26,10 @@ provider:
   role: ${file(./serverless-env.yml):role}
   deploymentBucket:
     name: ${file(./serverless-env.yml):deploy-bucket}
+  # Enable API Gateway CloudWatch Logs
+  # https://www.serverless.com/blog/framework-release-v142/
+  logs:
+    restApi: true
 
 plugins:
   - serverless-webpack
