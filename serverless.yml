@@ -30,6 +30,8 @@ provider:
   # https://www.serverless.com/blog/framework-release-v142/
   logs:
     restApi: true
+  logRetentionInDays: 30
+
 
 plugins:
   - serverless-webpack
@@ -117,25 +119,25 @@ layers:
   lambdalayers:
     path: lambda-layers
 
-resources:
-  Resources:
-    IndexLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        RetentionInDays: 30
-    ScrapeLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        RetentionInDays: 30
-    CacheLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        RetentionInDays: 30
-    HookLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        RetentionInDays: 30
-    QueryLogGroup:
-      Type: AWS::Logs::LogGroup
-      Properties:
-        RetentionInDays: 30
+# resources:
+#   Resources:
+#     IndexLogGroup:
+#       Type: AWS::Logs::LogGroup
+#       Properties:
+#         RetentionInDays: 30
+#     ScrapeLogGroup:
+#       Type: AWS::Logs::LogGroup
+#       Properties:
+#         RetentionInDays: 30
+#     CacheLogGroup:
+#       Type: AWS::Logs::LogGroup
+#       Properties:
+#         RetentionInDays: 30
+#     HookLogGroup:
+#       Type: AWS::Logs::LogGroup
+#       Properties:
+#         RetentionInDays: 30
+#     QueryLogGroup:
+#       Type: AWS::Logs::LogGroup
+#       Properties:
+#         RetentionInDays: 30
