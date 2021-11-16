@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "ava": "^2.4.0",
-    "aws-sdk": "^2.585.0",
+    "aws-sdk": "^2.814.0",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "coveralls": "^3.0.9",
